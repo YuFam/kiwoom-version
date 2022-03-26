@@ -1,3 +1,3 @@
 @echo off
 cd %~dp0
-C:/Anaconda3/python update.py
+C:/Users/admin/anaconda3/python update.py

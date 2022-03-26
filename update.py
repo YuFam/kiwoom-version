@@ -8,6 +8,7 @@ import win32con
 import win32api
 import time
 import multiprocessing as mp
+from dotenv import load_dotenv
 
 
 #--------------------------------------------------------------------
@@ -196,4 +197,12 @@ def version(user_id, user_pass, user_cert=None):
 
 
 if __name__ == "__main__":
-    version("아이디", "비밀번호", "공인인증서비밀번호")
+    load_dotenv()
+    user_id = os.environ.get('USER_ID')
+    user_password = os.environ.get('USER_PASSWORD')
+    user_certification = None if os.environ.get('USER_CERTIFICATION') is '' else os.environ.get('USER_CERTIFICATION')
+    if user_id is '' \
+            or user_password is '':
+        raise Exception("Need to USER_ID, USER_PASSWORD")
+
+    version(user_id, user_password, user_certification)
